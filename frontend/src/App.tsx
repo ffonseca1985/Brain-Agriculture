@@ -1,10 +1,13 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
 
 function App() {
   return <React.Fragment>
-    <Navbar />
-    <Outlet />
+    <Container>
+      <Navbar />
+      <Outlet />
+    </Container>
   </React.Fragment>;
 }
 
@@ -30,13 +33,13 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link className="nav-link" to="/dashboards">
-              Dashboards
+            <Link className="nav-link" to="/producer">
+              Producer
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/producer">
-              Producer
+            <Link className="nav-link" to="/dashboards">
+              Dashboards
             </Link>
           </li>
         </ul>
