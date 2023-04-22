@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-export default class ProductController {
+export default class ProducerController {
 
     async post(request: Request, response: Response) {
 

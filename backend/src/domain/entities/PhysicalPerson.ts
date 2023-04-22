@@ -1,9 +1,9 @@
 import { isCPFValid } from "src/uteis/cpf";
-import { IProdutor } from "./IProdutor";
+import { IProducer } from "./IProducer";
 import { Farm } from "./farm";
 import InvalidArgumentException from "@domain/exceptions/invalidArgumentException";
 
-export class Produtor implements IProdutor {
+export class Produtor implements IProducer {
 
     private _id: string;
     private _name: string;

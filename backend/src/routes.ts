@@ -1,7 +1,7 @@
 import { Router } from "express";
-import ProductController from "./apresentation/products.controller";
+import ProducerController from "./apresentation/producer.controller";
 
 export const routes = (router: Router) => {
 
-    router.post("/", new ProductController().post);
+    router.post("/", new ProducerController().post);
 }
