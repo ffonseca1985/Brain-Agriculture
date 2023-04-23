@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "babel.config.js"],
   "exclude": ["node_modules"],
   "ts-node": {
     // these options are overrides used only by ts-node
@@ -112,8 +112,7 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "paths": {
-      "@controllers/*": ["src/controllers/*"],
-      "@domain/*": ["src/domain/*"]
+      "@controllers/*": ["src/controllers/*"]
     }
   }
 }

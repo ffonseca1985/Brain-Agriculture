@@ -1,7 +1,10 @@
+import "reflect-metadata";
+import "./infra/crosscutting/container"
+
 import express, { Router } from "express";
 import { routes } from "./routes";
 import bodyParser from 'body-parser';
-import corsAppMiddleware from "./apresentation/midlewares/cors";
+import corsAppMiddleware from "./controllers/midlewares/cors";
 
 let app = express();
 

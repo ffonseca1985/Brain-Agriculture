@@ -1,5 +1,6 @@
 import { Router } from "express";
-import ProducerController from "./apresentation/producer.controller";
+import ProducerController from "./controllers/producer.controller";
+import "reflect-metadata";
 
 export const routes = (router: Router) => {
 

@@ -1,4 +1,4 @@
-import BrainAgricultureException from "../../exceptions/brainAgricultureException";
+import BrainAgricultureException from "../../../exceptions/brainAgricultureException";
 
 export class Area {
 
