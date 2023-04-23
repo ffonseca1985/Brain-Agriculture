@@ -1,8 +1,9 @@
 
 import { isCNPJValid } from "src/uteis/cnpj";
 import { IProducer } from "./IProducer";
+import InvalidArgumentException from "../exceptions/invalidArgumentException";
 import { Farm } from "./farm";
-import InvalidArgumentException from "@domain/exceptions/invalidArgumentException";
+
 
 export class LegalPerson implements IProducer {
 

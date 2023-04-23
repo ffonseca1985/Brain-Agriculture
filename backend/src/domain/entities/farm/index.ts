@@ -1,27 +1,24 @@
+import { Address } from "../address";
 import { Area } from "./area";
-import { Cultue } from "./cutures";
 
 export class Farm {
 
     private _name: string;
     private _address: Address;
-    private _cultures: Cultue[];
+    private _cultures: string[];
     private _totalArable: Area;
     private _totalVegetated: Area;
 
     private _errors: string[] = []
 
-    constructor(id: string, name: string, address: Address, cultures: Cultue[], totalArable: Area, totalVegetated: Area) {
+    constructor(name: string, address: Address, cultures: string[], totalArable: Area, totalVegetated: Area) {
         
-        this.id = id;
         this._name = name;
         this._address = address;
         this._cultures = cultures;
         this._totalArable = totalArable;
         this._totalVegetated = totalVegetated;
     }
-
-    id: string
 
     get name(): string {
         return this._name;
@@ -39,11 +36,11 @@ export class Farm {
         this._address = value;
     }
 
-    get cultures(): Cultue[] {
+    get cultures(): string[] {
         return this._cultures;
     }
 
-    private set cultures(value: Cultue[]) {
+    private set cultures(value: string[]) {
         this._cultures = value;
     }
 
@@ -68,9 +65,4 @@ export class Farm {
     }
 
     isValid = () => this._errors?.length == 0
-}
-
-export interface Address {
-    city: string;
-    state: string;
 }
