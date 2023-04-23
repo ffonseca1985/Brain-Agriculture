@@ -1,6 +1,6 @@
 
 import { isCNPJValid } from "src/uteis/cnpj";
-import { IProducer } from "./IProducer";
+import { IProducer, ProducerType } from "./IProducer";
 import InvalidArgumentException from "../exceptions/invalidArgumentException";
 import { Farm } from "./farm";
 
@@ -9,9 +9,10 @@ export class LegalPerson implements IProducer {
 
     private _id: string;
     private _name: string;
-    private _farms: Farm[];
+    private _farm: Farm;
+    private _type: ProducerType;
 
-    constructor(cnpj: string, name: string, farms: Farm[]) {
+    constructor(cnpj: string, name: string, type: ProducerType, farm: Farm) {
 
         const isValid = isCNPJValid(cnpj);
 
@@ -21,15 +22,24 @@ export class LegalPerson implements IProducer {
 
         this._id = cnpj;
         this._name = name;
-        this._farms = farms;
+        this._farm = farm;
+        this._type = type;
     }
-
+    
     get id(): string {
         return this._id;
     }
 
     set id(id: string) {
         this._id = id;
+    }
+
+    get type(): ProducerType {
+        return this._type;
+    }
+
+    set type(type: ProducerType) {
+        this._type = type;
     }
 
     get name(): string {
@@ -40,11 +50,11 @@ export class LegalPerson implements IProducer {
         this._name = name;
     }
 
-    get farms(): Farm[] {
-        return this._farms;
+    get farm(): Farm {
+        return this._farm;
     }
 
-    set farms(farms: Farm[]) {
-        this._farms = farms;
+    set farm(farm: Farm) {
+        this._farm = farm;
     }
 }

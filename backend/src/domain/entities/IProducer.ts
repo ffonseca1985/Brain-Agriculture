@@ -3,5 +3,11 @@ import { Farm } from "./farm";
 export interface IProducer {
     id: string;
     name: string;
-    farms: Farm[];
+    type: ProducerType;
+    farm: Farm;
+}
+
+export enum ProducerType {
+    Phisical,
+    Legal
 }

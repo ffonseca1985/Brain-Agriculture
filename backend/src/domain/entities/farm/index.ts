@@ -11,13 +11,13 @@ export class Farm {
 
     private _errors: string[] = []
 
-    constructor(name: string, address: Address, cultures: string[], totalArable: Area, totalVegetated: Area) {
+    constructor(name: string, city: string, state: string, cultures: string[], totalArable: number, totalVegetated: number) {
         
         this._name = name;
-        this._address = address;
+        this._address = new Address(city, state);
         this._cultures = cultures;
-        this._totalArable = totalArable;
-        this._totalVegetated = totalVegetated;
+        this._totalArable = new Area(totalArable);
+        this._totalVegetated = new Area(totalVegetated);
     }
 
     get name(): string {

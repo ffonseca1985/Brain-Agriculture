@@ -1,15 +1,16 @@
 import { isCPFValid } from "src/uteis/cpf";
-import { IProducer } from "./IProducer";
+import { IProducer, ProducerType } from "./IProducer";
 import { Farm } from "./farm";
-import InvalidArgumentException from "@domain/exceptions/invalidArgumentException";
+import InvalidArgumentException from "../exceptions/invalidArgumentException";
 
-export class Produtor implements IProducer {
+export class PhysicalPerson implements IProducer {
 
     private _id: string;
     private _name: string;
-    private _farms: Farm[];
-
-    constructor(cpf: string, name: string, farms: Farm[]) {
+    private _farm: Farm;
+    private _type: ProducerType;
+    
+    constructor(cpf: string, name: string, type: ProducerType, farm: Farm) {
 
         const isValid = isCPFValid(cpf);
 
@@ -19,7 +20,8 @@ export class Produtor implements IProducer {
 
         this._id = cpf;
         this._name = name;
-        this._farms = farms;
+        this._farm = farm;
+        this._type = type;
     }
 
     get id(): string {
@@ -30,6 +32,14 @@ export class Produtor implements IProducer {
         this._id = id;
     }
 
+    get type(): ProducerType {
+        return this._type;
+    }
+
+    set type(type: ProducerType) {
+        this._type = type;
+    }
+
     get name(): string {
         return this._name;
     }
@@ -38,11 +48,11 @@ export class Produtor implements IProducer {
         this._name = name;
     }
 
-    get farms(): Farm[] {
-        return this._farms;
+    get farm(): Farm {
+        return this._farm;
     }
 
-    set farms(farms: Farm[]) {
-        this._farms = farms;
+    set farm(farm: Farm) {
+        this._farm = farm;
     }
 }

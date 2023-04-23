@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetAllCulturesUseCase } from "src/useCase/getAllCulturesUseCase";
+import { GetAllCulturesUseCase } from "src/useCase/getAllCultures.useCase";
 import { container } from "tsyringe"
 
 export default class CultureController {

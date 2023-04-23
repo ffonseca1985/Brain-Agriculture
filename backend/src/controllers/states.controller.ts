@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetAllStatesUseCase } from "src/useCase/getAllStatesUseCase";
+import { GetAllStatesUseCase } from "src/useCase/getAllStates.useCase";
 import { container } from "tsyringe"
 
 export class StatesController {
