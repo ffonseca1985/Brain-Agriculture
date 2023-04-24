@@ -8,6 +8,6 @@ export interface IProducer {
 }
 
 export enum ProducerType {
-    Phisical,
-    Legal
+    Phisical = 1,
+    Legal = 2
 }

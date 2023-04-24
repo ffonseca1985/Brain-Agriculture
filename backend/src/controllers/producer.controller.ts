@@ -1,17 +1,18 @@
 import { Request, Response } from "express";
-import { producerDto } from "./dtos/producerDto";
+import { ProducerDto } from "./dtos/producerDto";
+import { container } from "tsyringe";
+import InsertProducerUseCase from "src/useCase/producer/InsertProducer.useCase";
 
 export default class ProducerController {
 
   async post(request: Request, response: Response) {
 
-    const { tipo, nomeProdutor, nomeFazenda, cidade, estado, areaTotalAgricultavel, areaTotalVegetacao, culturas } : producerDto = request.body;
+    const instanceUseCase = container.resolve(InsertProducerUseCase)
+    const producer: ProducerDto = request.body;
 
-    
-
+    const result = await instanceUseCase.execute(producer);
 
     response.status(201)
-      .json();
-
+      .json(result);
   }
 }

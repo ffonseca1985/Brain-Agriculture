@@ -1,6 +1,6 @@
 
 
-export interface producerDto {
+export interface ProducerDto {
     id: string,
     tipo : number,
     nomeProdutor: string,
