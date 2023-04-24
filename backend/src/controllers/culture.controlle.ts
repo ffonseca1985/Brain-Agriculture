@@ -4,7 +4,7 @@ import { container } from "tsyringe"
 
 export default class CultureController {
 
-    async get(request: Request, response: Response) {
+    async get(_: Request, response: Response) {
 
         const instanceUseCase = container.resolve(GetAllCulturesUseCase)
         const cultures = instanceUseCase.execute();

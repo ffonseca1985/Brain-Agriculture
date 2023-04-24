@@ -2,7 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../connection';
 
 export class ProducerModel extends Model {
-  public id!: number;
+  public id!: string;
   public name!: string;
 }
 

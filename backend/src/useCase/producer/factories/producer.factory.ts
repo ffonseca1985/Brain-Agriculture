@@ -1,6 +1,6 @@
 import { IProducer, ProducerType } from "src/domain/entities/IProducer";
 import InsertProducerUseCase from "../InsertProducer.useCase";
-import { ProducerDto } from "@controllers/dtos/producerDto";
+import { CreateProducerDto } from "@controllers/dtos/createProducerDto";
 import { LegalPerson } from "src/domain/entities/LegalPerson";
 import InvalidArgumentException from "src/domain/exceptions/invalidArgumentException";
 import { PhysicalPerson } from "src/domain/entities/PhysicalPerson";
@@ -8,7 +8,7 @@ import { Farm } from "src/domain/entities/farm";
 
 export class ProducerFactory {
 
-    static Create(dto: ProducerDto): IProducer {
+    static Create(dto: CreateProducerDto): IProducer {
 
         let instance: IProducer;
         let farm : Farm = new Farm(dto.nomeFazenda, dto.cidade, dto.estado, dto.culturas, dto.areaTotalAgricultavel, dto.areaTotalVegetacao);
