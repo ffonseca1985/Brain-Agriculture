@@ -15,7 +15,6 @@ const Dashboards : React.FC = () => {
             <PieStates />
         </React.Fragment>
     )
-
 }
 
 export default Dashboards;

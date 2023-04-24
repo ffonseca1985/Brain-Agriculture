@@ -1,31 +1,78 @@
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Select, MenuItem, OutlinedInput } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Producer } from './services/types';
-import { create } from './services';
-import { useState } from 'react';
+import { Producer, ProducerType } from './services/types';
+import { create } from './services/producer';
+import { useEffect, useState } from 'react';
 import React from 'react';
-
-const validationSchema = Yup.object({
-    nomeProdutor: Yup.string().required('Required'),
-    nomeFazenda: Yup.string().required('Required'),
-    cidade: Yup.string().required('Required'),
-    estado: Yup.string().required('Required'),
-});
+import { isCPFValid } from '../../uteis/cpf';
+import { isCNPJValid } from '../../uteis/cnpj';
+import { getCulture } from './services/cultures';
+import { getState } from './services/states';
+import { addItens } from "../../store/producer/produceSlice"
+import { useDispatch } from 'react-redux';
 
 const Create = () => {
 
-    const [load, setLoad] = useState<boolean>(false);
+
+    const dispath = useDispatch();
+
+    const validationSchema = Yup.object({
+
+        id: Yup.string().required().test('customValidation', 'Document invalid', function (value) {
+
+            var element = formik.values.tipo;
+
+            if (element === ProducerType.Phisical) {
+                return isCPFValid(value);
+            }
+
+            return isCNPJValid(value);
+
+        }),
+        nomeProdutor: Yup.string().required('Required'),
+        nomeFazenda: Yup.string().required('Required'),
+        cidade: Yup.string().required('Required'),
+        areaTotalAgricultavel: Yup.number().positive('Value must be greater than zero')
+                                           .moreThan(0, 'Value must be greater than zero'),
+        areaTotalVegetacao: Yup.number().positive('Value must be greater than zero')
+                                           .moreThan(0, 'Value must be greater than zero'),                                   
+        estado: Yup.string().required('Required'),
+        tipo: Yup.number().required("Required")
+    });
+
+    const [creating, setCreating] = useState<boolean>(false);
+    const [cultures, setCultures] = useState<Array<string>>([]);
+    const [states, setState] = useState<Array<string>>([]);
+
+    useEffect(() => {
+
+        (async () => {
+            const result = await getCulture();
+            setCultures(result);
+        })();
+
+    }, []);
+
+    useEffect(() => {
+
+        (async () => {
+            const result = await getState();
+            setState(result)
+        })();
+
+    }, []);
 
     const initialValue: Producer = {
         nomeProdutor: '',
         nomeFazenda: '',
         cidade: '',
-        estado: '',
+        estado: 'Acre',
         id: '',
+        culturas: ["Soja"],
         areaTotalAgricultavel: 0,
         areaTotalVegetacao: 0,
-        tipo: 1
+        tipo: ProducerType.Phisical
     };
 
     const formik = useFormik({
@@ -33,17 +80,19 @@ const Create = () => {
         validationSchema,
         onSubmit: async (producer: Producer) => {
             try {
-                setLoad(true);
+                setCreating(true);
+                
                 await create(producer);
+                dispath(addItens(producer));
 
                 alert("salvo produtor com sucesso");
             } catch (error: any) {
 
                 alert("Erro ao salvar produtor");
-                setLoad(true);
+                setCreating(true);
             }
             finally {
-                setLoad(false);
+                setCreating(false);
             }
         }
     });
@@ -52,6 +101,37 @@ const Create = () => {
         <React.Fragment>
             <h3 className='text-primary text-uppercase'>Cadastro De Produtor</h3>
             <form onSubmit={formik.handleSubmit}>
+                <Select
+                    fullWidth
+                    label="Tipo"
+                    value={formik.values.tipo}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    name="tipo"
+                    variant="standard">
+                    <MenuItem key={ProducerType.Phisical}
+                        value={ProducerType.Phisical}>
+                        Pessoa Fisica
+
+                    </MenuItem>
+                    <MenuItem key={ProducerType.Legal}
+                        value={ProducerType.Legal}>
+                        Pessoa Juridica
+
+                    </MenuItem>
+                </Select>
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    id="id"
+                    name="id"
+                    label="CPF/CNPJ"
+                    value={formik.values.id}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.id && Boolean(formik.errors.id)}
+                    helperText={formik.touched.id && formik.errors.id}
+                />
                 <TextField
                     fullWidth
                     margin="normal"
@@ -79,6 +159,32 @@ const Create = () => {
                 <TextField
                     fullWidth
                     margin="normal"
+                    id="areaTotalAgricultavel"
+                    name="areaTotalAgricultavel"
+                    label="area Total Agricultavel"
+                    value={formik.values.areaTotalAgricultavel}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.areaTotalAgricultavel && Boolean(formik.errors.areaTotalAgricultavel)}
+                    helperText={formik.touched.areaTotalAgricultavel && formik.errors.areaTotalAgricultavel}
+                />
+                
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    id="areaTotalVegetacao"
+                    name="areaTotalVegetacao"
+                    label="area Total Vegetacaol"
+                    value={formik.values.areaTotalVegetacao}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.areaTotalVegetacao && Boolean(formik.errors.areaTotalVegetacao)}
+                    helperText={formik.touched.areaTotalVegetacao && formik.errors.areaTotalVegetacao}
+                />
+                
+                <TextField
+                    fullWidth
+                    margin="normal"
                     id="cidade"
                     name="cidade"
                     label="Cidade"
@@ -88,20 +194,48 @@ const Create = () => {
                     error={formik.touched.cidade && Boolean(formik.errors.cidade)}
                     helperText={formik.touched.cidade && formik.errors.cidade}
                 />
-                <TextField
+                <Select
                     fullWidth
-                    margin="normal"
-                    id="estado"
-                    name="estado"
+                    label="culturas"
+                    multiple
+                    input={<OutlinedInput label={"culturas"} />}
+                    value={formik.values.culturas}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    name="culturas"
+                    variant="standard"
+                    error={formik.touched.culturas && Boolean(formik.errors.culturas)}>
+                    {
+                        cultures?.map((x, key) =>
+                            <MenuItem key={key}
+                                value={x}> {x}
+                            </MenuItem>)
+                    }
+                </Select>
+
+                <Select
+                    fullWidth
+                    className='mt-2'
                     label="Estado"
+                    input={<OutlinedInput label={"Estado"} />}
                     value={formik.values.estado}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    error={formik.touched.estado && Boolean(formik.errors.estado)}
-                    helperText={formik.touched.estado && formik.errors.estado}
-                />
-                <Button type="submit" variant="contained" color="primary">
-                    {load ? "PROCESSANDO" : "SALVAR"}
+                    name="estado"
+                    variant="standard"
+                    error={formik.touched.estado && Boolean(formik.errors.estado)}>
+                    {
+                        states?.map((x, key) =>
+                            <MenuItem key={key}
+                                value={x}>
+                                {x}
+
+                            </MenuItem>)
+                    }
+                </Select>
+
+                <Button type="submit" fullWidth className='mt-3' variant="contained" color="primary">
+                    {creating ? "PROCESSANDO" : "SALVAR"}
                 </Button>
             </form>
         </React.Fragment>

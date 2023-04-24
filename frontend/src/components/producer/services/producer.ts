@@ -20,7 +20,7 @@ export const getAll = async (): Promise<Array<Producer>> => {
 }
 
 export const deleteById = async (id: string) => {
-    await axios.get(`${URL_BACKEND}/api/producer/${id}`);
+    await axios.delete(`${URL_BACKEND}/api/producer/${id}`);
 }
 
 export const update = async (producer : Producer) => {

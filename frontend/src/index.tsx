@@ -4,6 +4,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from './routes/appRoutes';
 
+import { Provider } from 'react-redux';
+import store from './store/store';
+
 import "./assets/app.scss";
 
 const root = ReactDOM.createRoot(
@@ -11,9 +14,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
