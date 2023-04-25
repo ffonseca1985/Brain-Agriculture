@@ -6,13 +6,13 @@ export const producerParse = (itens: ProducerModel[]): IProducer[] => {
 
     const producers: Array<IProducer> = itens.map(x => {
 
-        const element = x.get();
+        const element : ProducerModel = x.get();
 
         const producer: IProducer = {
             id: element.id,
             name: element.name,
-            type: 1,
-            farm: new Farm("test", "wrt", "werwr", ["123123", "ewerwer"], 223, 123)
+            type: element.type,
+            farm: new Farm(element.farmName, element.city, element.state, ["123123", "ewerwer"], element.areaTotalAgricultable, element.areaTotalVegetacao)
         };
 
         return producer;

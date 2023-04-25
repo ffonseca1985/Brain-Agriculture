@@ -23,7 +23,15 @@ export class ProducerRespository implements IProducerRespository {
 
         const model = {
             id: producer.id,
-            name: producer.name
+            name: producer.name,
+            type: producer.type,
+            farmName: producer.farm.name,
+            city: producer.farm.address.city,
+            state: producer.farm.address.state,
+            areaTotalAgricultable: producer.farm.totalArable.total,
+            areaTotalVegetacao: producer.farm.totalVegetated.total,
+            total: producer.farm.total.total,
+            cultures: producer.farm.cultures.join(",")
         }
 
         await ProducerModel.create(model)

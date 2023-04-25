@@ -4,6 +4,14 @@ import { sequelize } from '../connection';
 export class ProducerModel extends Model {
   public id!: string;
   public name!: string;
+  public type: number;
+  public farmName: string;
+  public city: string;
+  public state: string;
+  public areaTotalAgricultable: number;
+  public areaTotalVegetacao: number;
+  public total: number;
+  public cultures: string;
 }
 
 ProducerModel.init(
@@ -17,6 +25,34 @@ ProducerModel.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    type: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    farmName : {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    areaTotalAgricultable: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    areaTotalVegetacao: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    cultures: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   {
     sequelize,

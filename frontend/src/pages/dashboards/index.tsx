@@ -4,7 +4,6 @@ import PieSolo from "../../components/dashboard/pieSolo";
 import PieStates from "../../components/dashboard/pieStates";
 import { Totals } from "../../components/dashboard/totals";
 
-
 const Dashboards : React.FC = () => {
     
     return (

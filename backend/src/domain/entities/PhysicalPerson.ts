@@ -18,10 +18,10 @@ export class PhysicalPerson implements IProducer {
             throw new InvalidArgumentException(`invalid CPF: ${cpf}`)
         }
 
-        this._id = cpf;
-        this._name = name;
-        this._farm = farm;
-        this._type = type;
+        this.id = cpf;
+        this.name = name;
+        this.farm = farm;
+        this.type = type;
     }
 
     get id(): string {

@@ -29,7 +29,7 @@ const ProducerPage: React.FC<any> = () => {
             }
         })();
 
-    }, []);
+    }, [dispatch]);
 
     return (
         <React.Fragment>
