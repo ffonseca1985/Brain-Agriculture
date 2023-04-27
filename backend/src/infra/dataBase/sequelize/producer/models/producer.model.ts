@@ -1,5 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../connection';
+import { sequelize } from '../../connection';
 
 export class ProducerModel extends Model {
   public id!: string;
@@ -46,7 +46,11 @@ ProducerModel.init(
       allowNull: false
     },
     areaTotalVegetacao: {
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL,
+      allowNull: false,
+    },
+    total: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
     cultures: {

@@ -6,10 +6,16 @@ export default class CultureController {
 
     async get(_: Request, response: Response) {
 
-        const instanceUseCase = container.resolve(GetAllCulturesUseCase)
-        const cultures = instanceUseCase.execute();
+        try {
+            const instanceUseCase = container.resolve(GetAllCulturesUseCase)
+            const cultures = instanceUseCase.execute();
 
-        response.status(201)
-            .json(cultures);
+            response.status(201)
+                .json(cultures);
+
+        } catch (error) {
+            response.status(500)
+                .json();
+        }
     }
 }

@@ -11,13 +11,21 @@ export default class ProducerController {
 
   async post(request: Request, response: Response) {
 
-    const instanceUseCase = container.resolve(InsertProducerUseCase)
-    const producer: CreateProducerDto = request.body;
+    try {
 
-    const result = await instanceUseCase.execute(producer);
+      const instanceUseCase = container.resolve(InsertProducerUseCase)
+      const producer: CreateProducerDto = request.body;
 
-    response.status(201)
-      .json(result);
+      const result = await instanceUseCase.execute(producer);
+
+      response.status(201)
+        .json(result);
+
+    } catch (error) {
+
+      response.status(500)
+        .json();
+    }
   }
 
   async get(_: Request, response: Response) {
@@ -31,24 +39,34 @@ export default class ProducerController {
 
   async delete(request: Request, response: Response) {
 
-    const instanceUseCase = container.resolve(DeleteProducerUseCase);
-    const { id } = request.params;
+    try {
 
-    const result = await instanceUseCase.execute(id);
+      const instanceUseCase = container.resolve(DeleteProducerUseCase);
+      const { id } = request.params;
 
-    result ? response.status(204) : response.status(400);
-    response.send();
+      const result = await instanceUseCase.execute(id);
+
+      result ? response.status(204) : response.status(400);
+      response.send();
+
+    } catch (error) {
+      response.status(500).json();
+    }
   }
 
   async put(request: Request, response: Response) {
 
-    const instanceUseCase = container.resolve(UpdateProducerUseCase);
-    const producer: UpdateProducerDto = request.body;
+    try {
 
-    await instanceUseCase.execute(producer);
+      const instanceUseCase = container.resolve(UpdateProducerUseCase);
+      const producer: UpdateProducerDto = request.body;
 
-    response
-      .json(204)
-      .send();
+      await instanceUseCase.execute(producer);
+
+      response.json(204).send();
+
+    } catch (error) {
+      response.status(500).json();
+    }
   }
 }

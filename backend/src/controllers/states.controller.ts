@@ -4,11 +4,15 @@ import { container } from "tsyringe"
 
 export class StatesController {
 
-    get(request: Request, response: Response) {
+    get(_: Request, response: Response) {
 
-        const useCase = container.resolve(GetAllStatesUseCase);
-        const result = useCase.execute();
+        try {
+            const useCase = container.resolve(GetAllStatesUseCase);
+            const result = useCase.execute();
 
-        response.status(200).json(result);
+            response.status(200).json(result);
+        } catch (error) {
+            response.status(500).json();
+        }
     }
 }
