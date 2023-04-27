@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { CreateProducerDto } from "./dtos/createProducerDto";
 import { container } from "tsyringe";
 import InsertProducerUseCase from "src/useCase/producer/InsertProducer.useCase";
 import { GetAllProducerUseCase } from "src/useCase/producer/getAllProducer.useCase";
 import { DeleteProducerUseCase } from "src/useCase/producer/deleteProducer.useCase";
 import UpdateProducerUseCase from "src/useCase/producer/updateProducer.useCase";
 import { UpdateProducerDto } from "./dtos/updateProducerDto";
+import { CreateProducerDto } from "./dtos/createProducerDto";
 
 export default class ProducerController {
 

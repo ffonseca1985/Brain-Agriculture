@@ -1,11 +1,9 @@
+import { useEffect, useState } from "react";
+import { getTotalByLand } from "./services";
+import { parseDataPieLand } from "./services/types";
+import Chart from "react-google-charts";
 
-import React, { useState } from 'react';
-import Chart from 'react-google-charts';
-import { useEffect } from 'react'
-import { getTotalByState } from './services';
-import { parseDataPieState } from './services/types';
-
-const PieStates: React.FC = () => {
+const PieLand: React.FC = () => {
 
     const [dataPie, setSataPie] = useState<Array<any> | null>();
     const [loading, setLoading] = useState<boolean>(true)
@@ -17,16 +15,16 @@ const PieStates: React.FC = () => {
         (async () => {
 
             try {
-                const totalByState = await getTotalByState();
-
+                const totalByState = await getTotalByLand();
+debugger
                 if (totalByState) {
 
-                    const result = parseDataPieState(totalByState);
+                    const result = parseDataPieLand(totalByState);
                     setSataPie(result);
                 }
                 
             } catch (error) {
-                alert("Erro ao carregar graficos de estado")
+                alert("Erro ao carregar graficos de area")
             }
             finally {
                 setLoading(false);
@@ -61,4 +59,4 @@ const PieStates: React.FC = () => {
     );
 };
 
-export default PieStates;
+export default PieLand;

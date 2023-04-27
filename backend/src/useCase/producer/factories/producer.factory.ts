@@ -1,10 +1,9 @@
 import { IProducer, ProducerType } from "src/domain/entities/IProducer";
-import InsertProducerUseCase from "../InsertProducer.useCase";
-import { CreateProducerDto } from "@controllers/dtos/createProducerDto";
 import { LegalPerson } from "src/domain/entities/LegalPerson";
 import InvalidArgumentException from "src/domain/exceptions/invalidArgumentException";
 import { PhysicalPerson } from "src/domain/entities/PhysicalPerson";
 import { Farm } from "src/domain/entities/farm";
+import { CreateProducerDto } from "@controllers/producer/dtos/createProducerDto";
 
 export class ProducerFactory {
 

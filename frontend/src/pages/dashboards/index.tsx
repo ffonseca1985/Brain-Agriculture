@@ -1,17 +1,15 @@
 import React from "react";
-import PieCulture from "../../components/dashboard/pieCulture";
-import PieSolo from "../../components/dashboard/pieSolo";
+import PieLand from "../../components/dashboard/pieLand";
 import PieStates from "../../components/dashboard/pieStates";
-import { Totals } from "../../components/dashboard/totals";
+import { TableTotals } from "../../components/dashboard/totals";
 
 const Dashboards : React.FC = () => {
     
     return (
         <React.Fragment>
-            <Totals />
-            <PieCulture />
-            <PieSolo />
+            <TableTotals />
             <PieStates />
+            <PieLand />
         </React.Fragment>
     )
 }

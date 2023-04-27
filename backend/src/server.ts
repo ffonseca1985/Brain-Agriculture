@@ -4,7 +4,7 @@ import "./infra/crosscutting/container"
 import express from "express";
 import bodyParser from 'body-parser';
 import { routes } from "./routes";
-import corsAppMiddleware from "./controllers/midlewares/cors";
+import corsAppMiddleware from "./infra/crosscutting/midlewares/cors";
 import helmet from 'helmet';
 
 let app = express();

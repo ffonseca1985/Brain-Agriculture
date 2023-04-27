@@ -1,7 +1,7 @@
 import UseCase from "src/uteis/useCase";
-import { TotalsDto } from "./dtos/totalsDto";
 import { inject, injectable } from "tsyringe";
 import { GraphicsTotaisQuery } from "src/infra/dataBase/sequelize/graphics/graphics.totaisQuery";
+import { TotalsDto } from "@controllers/graphics/dtos/totalsDto";
 
 @injectable()
 export class GetTotaisUseCase implements UseCase<any, TotalsDto> {

@@ -21,7 +21,6 @@ const producerSlice = createSlice({
         },    
         loadItens(state, action: PayloadAction<Array<any>>) {
 
-            debugger
             state =  {...state, itens: action.payload, loading: false}
             return state;
         },

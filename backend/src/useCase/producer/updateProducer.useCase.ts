@@ -1,4 +1,4 @@
-import { UpdateProducerDto } from "@controllers/dtos/updateProducerDto";
+import { UpdateProducerDto } from "@controllers/producer/dtos/updateProducerDto";
 import IProducerRespository from "src/domain/contracts/IProducerRespository";
 import { IProducer } from "src/domain/entities/IProducer";
 import UseCase from "src/uteis/useCase";

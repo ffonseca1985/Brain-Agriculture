@@ -1,6 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { sequelize } from "../connection"
 import { injectable } from "tsyringe";
+import { TotalPerStateDto } from "@controllers/graphics/dtos/totalLandDto";
 
 @injectable()
 export class GraphicsTotalPerStateQuery {
@@ -13,9 +14,4 @@ export class GraphicsTotalPerStateQuery {
 
         return total;
     }
-}
-
-export interface TotalPerStateDto {
-    total: number;
-    state: string
 }

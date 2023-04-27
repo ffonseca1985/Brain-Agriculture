@@ -1,4 +1,4 @@
-import { CreateProducerDto } from "@controllers/dtos/createProducerDto";
+import { CreateProducerDto } from "@controllers/dtos/producer/createProducerDto";
 import { IProducer } from "src/domain/entities/IProducer";
 import UseCase from "src/uteis/useCase";
 import { ProducerFactory } from "./factories/producer.factory";

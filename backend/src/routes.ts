@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ProducerController from "./controllers/producer.controller";
+import ProducerController from "./controllers/producer/producer.controller";
 import { StatesController } from "@controllers/states.controller";
 import CultureController from "@controllers/culture.controlle";
 import { GraphicsTotaisQuery } from "./infra/dataBase/sequelize/graphics/graphics.totaisQuery";

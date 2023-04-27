@@ -26,4 +26,4 @@ export class GraphicsTotaisQuery {
 
 interface TotalResult {
     total: number;
-  }
+}
