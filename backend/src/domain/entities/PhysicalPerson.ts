@@ -1,4 +1,4 @@
-import { isCPFValid } from "src/uteis/cpf";
+import { isCPFValid } from "src/uteis/validations/cpf";
 import { IProducer, ProducerType } from "./IProducer";
 import { Farm } from "./farm";
 import InvalidArgumentException from "../exceptions/invalidArgumentException";

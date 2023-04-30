@@ -6,6 +6,11 @@ import { producerParse } from "./models/producer.parse";
 
 @injectable()
 export class ProducerRespository implements IProducerRespository {
+    
+    get = async (id: string) : Promise<IProducer> => {
+        let producer = await ProducerModel.findOne({ where: { id: id }});
+        return producer;
+    }
 
     delete = async (id: string) : Promise<boolean> => {
 
@@ -19,7 +24,7 @@ export class ProducerRespository implements IProducerRespository {
         return producer;
     }
 
-    save = async (producer: IProducer): Promise<IProducer> => {
+    upsert = async (producer: IProducer): Promise<IProducer> => {
 
         const model = {
             id: producer.id,
@@ -34,7 +39,7 @@ export class ProducerRespository implements IProducerRespository {
             cultures: producer.farm.cultures.join(",")
         }
 
-        await ProducerModel.create(model)
+        await ProducerModel.upsert(model)
         return producer;
     }
 

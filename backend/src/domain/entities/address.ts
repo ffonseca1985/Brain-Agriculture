@@ -1,4 +1,4 @@
-import { isNullOrEmpty } from "../../uteis/stringUtil"
+import { isNullOrEmpty } from "../../uteis/validations/stringUtil"
 import InvalidArgumentException from "../exceptions/invalidArgumentException";
 
 export class Address {

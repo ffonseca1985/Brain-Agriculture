@@ -1,5 +1,5 @@
 
-import { isCNPJValid } from "src/uteis/cnpj";
+import { isCNPJValid } from "src/uteis/validations/cnpj";
 import { IProducer, ProducerType } from "./IProducer";
 import InvalidArgumentException from "../exceptions/invalidArgumentException";
 import { Farm } from "./farm";
