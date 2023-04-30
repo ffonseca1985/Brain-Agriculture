@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug node Program",
             "args": ["${workspaceFolder}/src/server.ts"],
-            "runtimeArgs": ["--nolazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register", "-r", "dotenv/config"],
             "sourceMaps": true,
             "envFile": "${workspaceFolder}/.env",
             "console": "integratedTerminal",
