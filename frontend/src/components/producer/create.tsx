@@ -11,10 +11,26 @@ import { getCulture } from './services/cultures';
 import { getState } from './services/states';
 import { addItens } from "../../store/producer/produceSlice"
 import { useDispatch } from 'react-redux';
+import useProducer from '../../hooks/producerHook';
+
+const initialState: Producer = {
+    nomeProdutor: '',
+    nomeFazenda: '',
+    cidade: '',
+    estado: 'Acre',
+    id: '',
+    culturas: ["Soja"],
+    areaTotalAgricultavel: 0,
+    areaTotalVegetacao: 0,
+    tipo: ProducerType.Phisical
+};
+
 
 const Create = () => {
 
     const dispath = useDispatch();
+    const [producerUpdating] = useProducer<Producer | null>(null);
+    const [initialValue, setInitialValue] = useState<Producer>(initialState)
 
     const validationSchema = Yup.object({
 
@@ -46,6 +62,14 @@ const Create = () => {
 
     useEffect(() => {
 
+        if (producerUpdating){
+            setInitialValue(producerUpdating);
+        }
+
+    }, [producerUpdating])
+
+    useEffect(() => {
+
         (async () => {
             const result = await getCulture();
             setCultures(result);
@@ -61,18 +85,6 @@ const Create = () => {
         })();
 
     }, []);
-
-    const initialValue: Producer = {
-        nomeProdutor: '',
-        nomeFazenda: '',
-        cidade: '',
-        estado: 'Acre',
-        id: '',
-        culturas: ["Soja"],
-        areaTotalAgricultavel: 0,
-        areaTotalVegetacao: 0,
-        tipo: ProducerType.Phisical
-    };
 
     const formik = useFormik({
         initialValues: initialValue,
