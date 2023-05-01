@@ -4,15 +4,10 @@ import { Producer } from "../components/producer/services/types";
 
 const useProducer = <T extends Producer | null>(t: T) => {
 
-    const [producerUpdating, setProducerUpdating] = useState<any>();
+    const producerUpdating = useSelector((state: any) => {
 
-    useSelector((state: any) => {
-
-        const result: Producer = state.producer.itens.find((x: any) => x.updatingItem);
-
-        if (result) {
-            setProducerUpdating(producerUpdating)
-        }
+        const result: Producer = state.producer.itemModify;
+        return result;
     });
 
     return [producerUpdating];

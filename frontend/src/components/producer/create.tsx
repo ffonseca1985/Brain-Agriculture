@@ -9,7 +9,7 @@ import { isCPFValid } from '../../uteis/cpf';
 import { isCNPJValid } from '../../uteis/cnpj';
 import { getCulture } from './services/cultures';
 import { getState } from './services/states';
-import { addItens } from "../../store/producer/produceSlice"
+import { addItens, updateItem } from "../../store/producer/produceSlice"
 import { useDispatch } from 'react-redux';
 import useProducer from '../../hooks/producerHook';
 
@@ -25,12 +25,10 @@ const initialState: Producer = {
     tipo: ProducerType.Phisical
 };
 
-
 const Create = () => {
 
     const dispath = useDispatch();
     const [producerUpdating] = useProducer<Producer | null>(null);
-    const [initialValue, setInitialValue] = useState<Producer>(initialState)
 
     const validationSchema = Yup.object({
 
@@ -63,7 +61,15 @@ const Create = () => {
     useEffect(() => {
 
         if (producerUpdating){
-            setInitialValue(producerUpdating);
+            formik.setFieldValue("nomeProdutor", producerUpdating.nomeProdutor);
+            formik.setFieldValue("nomeFazenda", producerUpdating.nomeFazenda);
+            formik.setFieldValue("cidade", producerUpdating.cidade);
+            formik.setFieldValue("estado", producerUpdating.estado);
+            formik.setFieldValue("id", producerUpdating.id);
+            formik.setFieldValue("culturas", producerUpdating.culturas);
+            formik.setFieldValue("areaTotalAgricultavel", producerUpdating.areaTotalAgricultavel);
+            formik.setFieldValue("areaTotalVegetacao", producerUpdating.areaTotalVegetacao);
+            formik.setFieldValue("tipo", producerUpdating.tipo);
         }
 
     }, [producerUpdating])
@@ -87,16 +93,25 @@ const Create = () => {
     }, []);
 
     const formik = useFormik({
-        initialValues: initialValue,
+        initialValues: initialState,
         validationSchema,
         onSubmit: async (producer: Producer) => {
             try {
+
                 setCreating(true);
                 
                 await create(producer);
-                dispath(addItens(producer));
+                debugger
+                if(producerUpdating) {   
+                    dispath(updateItem(producer));
+                }
+                else{
+                    dispath(addItens(producer));
+                }
 
                 alert("salvo produtor com sucesso");
+                formik.resetForm();
+
             } catch (error: any) {
 
                 alert("Erro ao salvar produtor");

@@ -15,16 +15,16 @@ const PieLand: React.FC = () => {
         (async () => {
 
             try {
-                const totalByState = await getTotalByLand();
-debugger
-                if (totalByState) {
 
+                const totalByState = await getTotalByLand();
+                
+                if (totalByState) {
                     const result = parseDataPieLand(totalByState);
                     setSataPie(result);
                 }
                 
             } catch (error) {
-                alert("Erro ao carregar graficos de area")
+                alert("Erro ao carregar gráficos de area")
             }
             finally {
                 setLoading(false);

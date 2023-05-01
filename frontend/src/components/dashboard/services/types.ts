@@ -36,8 +36,8 @@ export const parseDataPieState = (totals: Array<TotalPerState>) : Array<Array<st
 export const parseDataPieLand = (totals: TotalLand) : Array<Array<string>> =>  {
 
     let graphic: Array<Array<any>> = [];
+    
     graphic.push(["Estados", "Solo"]);
-debugger
     graphic.push(["agricultavel", parseFloat(totals.totalagricutable.toString())])
     graphic.push(["Floresta", parseFloat(totals.totalvegetable.toString())])
 

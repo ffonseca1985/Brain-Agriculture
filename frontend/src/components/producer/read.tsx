@@ -3,7 +3,7 @@ import { Button, Table } from 'react-bootstrap';
 import { Producer, getCultures, getType } from './services/types';
 import { deleteById } from './services/producer';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteItem } from "../../store/producer/produceSlice"
+import { deleteItem, updatingItem } from "../../store/producer/produceSlice"
 
 const ReadTable: React.FC = () => {
 
@@ -27,8 +27,9 @@ const ReadTable: React.FC = () => {
   };
 
   const handleEdit = (id: string) => {
-
-
+    
+    const producer = producers.find(x => x.id === id);
+    dispatch(updatingItem(producer));
   };
 
   if (state.loading) {
@@ -43,7 +44,7 @@ const ReadTable: React.FC = () => {
 
     return (
       <tr>
-        <th> CPF/CNPJ</th>
+        <th>CPF/CNPJ</th>
         <th>Tipo</th>
         <th>Nome do produtor</th>
         <th>Nome da Fazenda</th>
@@ -69,7 +70,7 @@ const ReadTable: React.FC = () => {
       <td>{producer.areaTotalVegetacao}</td>
       <td>{getCultures(producer.culturas)}</td>
       <td>
-        <Button className='btn btn-link btn-primary'>Edit</Button>
+        <Button className='btn btn-link btn-primary' onClick={() => handleEdit(producer.id)}>Edit</Button>
         <Button className='btn btn-link text-danger btn-danger' onClick={() => handleDelete(producer.id)}>Delete</Button>
       </td>
     </tr>)

@@ -12,7 +12,7 @@ export const producerParse = (itens: ProducerModel[]): IProducer[] => {
             id: element.id,
             name: element.name,
             type: element.type,
-            farm: new Farm(element.farmName, element.city, element.state, ["123123", "ewerwer"], element.areaTotalAgricultable, element.areaTotalVegetacao)
+            farm: new Farm(element.farmName, element.city, element.state, element.cultures.split(","), element.areaTotalAgricultable, element.areaTotalVegetacao)
         };
 
         return producer;

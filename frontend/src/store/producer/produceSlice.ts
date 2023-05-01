@@ -29,7 +29,6 @@ const producerSlice = createSlice({
         addItens(state, action: PayloadAction<any>) {
             
             state =  {...state, itens: [...state.itens, action.payload], loading: false};
-
             return state;
         },
         deleteItem(state, action: PayloadAction<any>) {
@@ -42,20 +41,20 @@ const producerSlice = createSlice({
         updatingItem(state, action: PayloadAction<any>) {
 
             state = {...state, itemModify: action.payload}
-
             return state
         },
         updateItem(state, action: PayloadAction<any>)  {
             
-            const newItens = state.itens.filter(x => x.id !== action.payload);
+            debugger
+            const newItens = state.itens.filter(x => x.id !== action.payload.id);
             newItens.push(action.payload);
 
-            state = {...state, itens: newItens}
+            state = {...state, itens: newItens, itemModify: null}
 
             return state;
         }
     }
 });
 
-export const { setLoading, loadItens, addItens, deleteItem, updateItem } = producerSlice.actions;
+export const { setLoading, loadItens, addItens, deleteItem, updatingItem, updateItem } = producerSlice.actions;
 export default producerSlice.reducer;
