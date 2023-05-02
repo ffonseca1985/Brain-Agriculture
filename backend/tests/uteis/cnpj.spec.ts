@@ -1,5 +1,5 @@
 
-import { isCNPJValid } from "../../src/uteis/cnpj";
+import { isCNPJValid } from "../../src/uteis/validations/cnpj";
 
 describe('CPF', () => {
 

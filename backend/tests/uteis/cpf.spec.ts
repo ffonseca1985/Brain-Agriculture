@@ -1,5 +1,5 @@
 
-import { isCPFValid } from "../../src/uteis/cpf";
+import { isCPFValid } from "../../src/uteis/validations/cpf";
 
 describe('CPF', () => {
 

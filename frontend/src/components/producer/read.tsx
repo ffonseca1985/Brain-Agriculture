@@ -7,16 +7,9 @@ import { deleteItem, updatingItem } from "../../store/producer/produceSlice"
 
 const ReadTable: React.FC = () => {
 
-  const [producers, setProducer] = useState<Array<Producer>>([]);
   const dispatch = useDispatch()
 
   const state =  useSelector((x: any) => x.producer);
-
-  useEffect(() => 
-  {
-    setProducer(state.itens);
-  }, [state.itens]);
-
 
   const handleDelete = async (id: string) => {
 
@@ -28,15 +21,15 @@ const ReadTable: React.FC = () => {
 
   const handleEdit = (id: string) => {
     
-    const producer = producers.find(x => x.id === id);
+    const producer = state.itens.find((x: Producer) => x.id === id);
     dispatch(updatingItem(producer));
   };
 
   if (state.loading) {
-    return <React.Fragment>Carregando...</React.Fragment>
+    return <div className='text-center' role="loading">Carregando...</div>
   }
 
-  if (!producers || producers.length === 0) {
+  if (!state.itens || state.itens.length === 0) {
     return <React.Fragment>[Sem itens Cadastrados]</React.Fragment>
   }
 
@@ -85,7 +78,7 @@ const ReadTable: React.FC = () => {
           <Header />
         </thead>
         <tbody>
-          {producers.map((prod, key) => <Body {...prod} key={key} />)}
+          {state.itens.map((prod : Producer, key: number) => <Body {...prod} key={key} />)}
         </tbody>
       </Table>
     </div>

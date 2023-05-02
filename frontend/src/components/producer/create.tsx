@@ -25,7 +25,7 @@ const initialState: Producer = {
     tipo: ProducerType.Phisical
 };
 
-const Create = () => {
+const Create : React.FC = () => {
 
     const dispath = useDispatch();
     const [producerUpdating] = useProducer<Producer | null>(null);
