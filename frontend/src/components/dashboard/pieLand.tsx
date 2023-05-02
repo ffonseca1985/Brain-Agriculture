@@ -40,14 +40,14 @@ const PieLand: React.FC = () => {
     };
 
     if(loading) {
-        return <div className='text-center'>Carregando</div>
+        return <div role="loading" className='text-center'>Carregando</div>
     }
     if (!dataPie) {
-        return <div className='text-center'>Nenhum dado encontrado para o grafico de estados</div>
+        return <div role="notFound" className='text-center'>Nenhum dado encontrado para o grafico de estados</div>
     }
 
     return (
-        <div>
+        <div role="chart">
             <Chart
                 chartType="PieChart"
                 data={dataPie}

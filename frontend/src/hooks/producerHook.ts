@@ -10,7 +10,7 @@ const useProducer = <T extends Producer | null>(t: T) => {
         return result;
     });
 
-    return [producerUpdating];
+    return [producerUpdating ?? t];
 }
 
 export default useProducer;

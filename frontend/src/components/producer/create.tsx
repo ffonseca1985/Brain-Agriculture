@@ -99,9 +99,8 @@ const Create = () => {
             try {
 
                 setCreating(true);
-                
                 await create(producer);
-                debugger
+                
                 if(producerUpdating) {   
                     dispath(updateItem(producer));
                 }
@@ -113,9 +112,7 @@ const Create = () => {
                 formik.resetForm();
 
             } catch (error: any) {
-
                 alert("Erro ao salvar produtor");
-                setCreating(true);
             }
             finally {
                 setCreating(false);

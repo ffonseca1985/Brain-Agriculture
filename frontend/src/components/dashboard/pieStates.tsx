@@ -34,7 +34,6 @@ const PieStates: React.FC = () => {
         })()
     }, [])
 
-
     const options = {
         title: 'Estados',
         pieHole: 0.4,

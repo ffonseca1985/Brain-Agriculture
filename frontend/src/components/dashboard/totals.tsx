@@ -30,13 +30,14 @@ export const TableTotals: React.FC = () => {
     }, [])
 
     if (loading) {
-        return <div className="text-center text-primary" >Carregando</div>
+        return <div role="loading" className="text-center text-primary" >Carregando</div>
     }
 
     if (!total)
         return <div className="text-center text-primary">Nenhum Item encontrado...</div>
 
-    return (<div className="container">
+    return (
+    <div role="table" className="container">
         <table className="table">
             <thead>
                 <tr>
