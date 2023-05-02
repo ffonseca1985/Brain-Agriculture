@@ -26,6 +26,6 @@
 
 ##### 5. Usei a versão 18.13.0 do node.
 
-
+##### 6. Os testes do backend estão na pasta backend/test e os testes do front são os arquivos *.spec.ts na mesma hierarquia dos componentes
 
 
